@@ -1,0 +1,1002 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:title" content="one77.pl">
+    <meta property="og:description" content="Oficjalna strona one77.pl Portfolio, linki i social media.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://one77.pl">
+    <meta property="og:image" content="https://one77.pl/profile.png">
+    <title>ONE77.pl</title>
+    <link rel="icon" type="image/png" href="profile.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@800;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        :root {
+            --primary: #f51414;
+            --secondary: #e92525;
+            --dark: #000000;
+            --light-dark: #000000;
+            --light: #F5F5F7;
+            --accent: #dc3636;
+            --text: #E0E0E0;
+        }
+
+        body {
+            background-color: var(--dark);
+            color: var(--text);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Tło z animacją */
+        .background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .gradient-circle {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(60px);
+            opacity: 0.6;
+            animation: float 15s infinite ease-in-out;
+        }
+
+        .circle-1 {
+            width: 500px;
+            height: 500px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            top: -200px;
+            left: -150px;
+            animation-delay: 0s;
+        }
+
+        .circle-2 {
+            width: 400px;
+            height: 400px;
+            background: linear-gradient(135deg, var(--secondary), #FF9A9E);
+            bottom: -150px;
+            right: -100px;
+            animation-delay: 5s;
+        }
+
+        .circle-3 {
+            width: 300px;
+            height: 300px;
+            background: linear-gradient(135deg, #FF9A9E, var(--accent));
+            top: 50%;
+            left: 80%;
+            animation-delay: 10s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) scale(1); }
+            50% { transform: translateY(-20px) scale(1.05); }
+        }
+
+        /* Kontener główny */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Nagłówek */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            position: relative;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 900;
+            font-size: 28px;
+            color: white;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            color: var(--primary);
+            font-size: 32px;
+            animation: spin 20s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .badge {
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            color: white;
+            box-shadow: 0 4px 15px rgba(255, 99, 125, 0.4);
+        }
+
+        /* Sekcja profilu */
+        .profile-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            margin: 40px 0 60px;
+            position: relative;
+        }
+
+        .profile-image {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 5px solid transparent;
+            background: linear-gradient(var(--dark), var(--dark)) padding-box,
+                        linear-gradient(135deg, var(--primary), var(--accent)) border-box;
+            overflow: hidden;
+            margin-bottom: 20px;
+            position: relative;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(108, 99, 255, 0.7); }
+            70% { box-shadow: 0 0 0 20px rgba(108, 99, 255, 0); }
+        }
+
+        .profile-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .profile-name {
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .profile-bio {
+            font-size: 18px;
+            max-width: 600px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            opacity: 0.9;
+        }
+
+        .stats {
+            display: flex;
+            gap: 30px;
+            margin-top: 20px;
+        }
+
+        .stat-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .stat-number {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .stat-label {
+            font-size: 14px;
+            opacity: 0.7;
+        }
+
+        /* Sekcja linków */
+        .links-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 25px;
+            margin-bottom: 60px;
+        }
+
+        .link-category {
+            background: rgba(42, 42, 62, 0.8);
+            border-radius: 20px;
+            padding: 25px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(108, 99, 255, 0.2);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .link-category:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            border-color: rgba(108, 99, 255, 0.5);
+        }
+
+        .link-category::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+        }
+
+        .category-title {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 25px;
+            font-size: 22px;
+            font-weight: 600;
+        }
+
+        .category-icon {
+            width: 45px;
+            height: 45px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: white;
+        }
+
+        .link-list {
+            list-style: none;
+        }
+
+        .link-item {
+            margin-bottom: 15px;
+        }
+
+        .link-item a {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            text-decoration: none;
+            color: var(--text);
+            transition: all 0.3s ease;
+            border: 1px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .link-item a:hover {
+            background: rgba(108, 99, 255, 0.1);
+            transform: translateX(5px);
+            border-color: rgba(108, 99, 255, 0.3);
+        }
+
+        .link-item a::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 3px;
+            background: linear-gradient(to bottom, var(--primary), var(--accent));
+            transform: scaleY(0);
+            transition: transform 0.3s ease;
+        }
+
+        .link-item a:hover::before {
+            transform: scaleY(1);
+        }
+
+        .link-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            background: rgba(108, 99, 255, 0.1);
+            color: var(--primary);
+        }
+
+        .link-text {
+            flex-grow: 1;
+        }
+
+        .link-title {
+            font-weight: 500;
+            margin-bottom: 5px;
+        }
+
+        .link-desc {
+            font-size: 13px;
+            opacity: 0.7;
+        }
+
+        .link-arrow {
+            color: var(--primary);
+            font-size: 18px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .link-item a:hover .link-arrow {
+            opacity: 1;
+        }
+
+        /* Sekcja konkursów */
+        .contest-highlight {
+            background: linear-gradient(135deg, rgba(108, 99, 255, 0.1), rgba(54, 209, 220, 0.1));
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 60px;
+            border: 1px solid rgba(108, 99, 255, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contest-highlight::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, rgba(108, 99, 255, 0.2) 0%, rgba(108, 99, 255, 0) 70%);
+        }
+
+        .contest-title {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+
+        .contest-title i {
+            color: var(--secondary);
+            font-size: 28px;
+        }
+
+        .contest-content {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .contest-image {
+            width: 200px;
+            height: 150px;
+            border-radius: 15px;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        .contest-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .contest-details h3 {
+            font-size: 22px;
+            margin-bottom: 10px;
+            color: white;
+        }
+
+        .contest-details p {
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+
+        .contest-button {
+            display: inline-block;
+            background: linear-gradient(90deg, var(--secondary), #FF9A9E);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(255, 101, 132, 0.4);
+        }
+
+        .contest-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255, 101, 132, 0.6);
+        }
+
+        /* Stopka */
+        footer {
+            text-align: center;
+            padding: 30px 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            margin-top: 40px;
+        }
+
+        .footer-text {
+            opacity: 0.7;
+            margin-bottom: 10px;
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .social-icon {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text);
+            font-size: 20px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .social-icon:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-5px);
+        }
+
+        /* Responsywność */
+        @media (max-width: 992px) {
+            .links-section {
+                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            }
+            
+            .contest-content {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .profile-name {
+                font-size: 28px;
+            }
+            
+            .stats {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .links-section {
+                grid-template-columns: 1fr;
+            }
+            
+            .logo {
+                font-size: 22px;
+            }
+            
+            .badge {
+                font-size: 10px;
+                padding: 4px 10px;
+            }
+        }
+
+        .kickrek {
+                width: 60px;
+        }
+        .csgoskins-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 15px;
+}
+
+.csgoskins-logo {
+    width: 230px;
+
+}
+
+.promo-code {
+    font-size: 20px;
+    font-weight: 700;
+    background: linear-gradient(90deg, var(--primary), var(--accent));
+    padding: 10px 20px;
+    border-radius: 12px;
+    color: white;
+    letter-spacing: 2px;
+    margin-top: 50px;
+}
+
+.copy-btn {
+    background: rgba(255,255,255,0.1);
+    border: 1px solid var(--primary);
+    color: var(--text);
+    padding: 10px 20px;
+    border-radius: 30px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.copy-btn:hover {
+    background: var(--primary);
+    color: white;
+    transform: translateY(-2px);
+}
+
+.visit-btn {
+    display: inline-block;
+    background: linear-gradient(90deg, var(--secondary), var(--accent));
+    color: white;
+    padding: 12px 30px;
+    border-radius: 40px;
+    font-weight: 600;
+    text-decoration: none;
+    margin-top: 5px;
+    transition: all 0.3s ease;
+}
+
+.visit-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(255, 80, 80, 0.6);
+}
+
+.prizes-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.prize-card {
+    background: linear-gradient(135deg, rgba(108, 99, 255, 0.1), rgba(54, 209, 220, 0.1));
+    border-radius: 12px;
+    width: 220px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    padding: 15px;
+    box-shadow: 0 0 10px rgba(25, 0, 255, 0.4);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.prize-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0 20px rgba(0, 153, 255, 0.7);
+}
+
+.prize-card img {
+    width: 100%;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+.prize-card h3 {
+    margin: 10px 0 5px;
+    font-size: 1.1em;
+}
+
+.prize-card p {
+    font-size: 0.9em;
+    margin: 5px 0 10px;
+    color: #ccc;
+    flex-grow: 1; /* To wypełnia pozostałą przestrzeń i wypycha przycisk na dół */
+}
+
+.points {
+    color: rgb(9, 255, 0);
+    font-weight: bold;
+    font-size: 1.2em;
+    margin-bottom: 10px;
+}
+
+.login-btn {
+    background: linear-gradient(90deg, #cc0022, #cc0022);
+    border: none;
+    padding: 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    color: #000;
+    width: 100%;
+    transition: background 0.3s;
+    margin-top: auto; /* To sprawia, że przycisk zawsze będzie przy dolnej krawędzi karty */
+}
+
+.login-btn:hover {
+    background: linear-gradient(90deg, #cc0022, #cc0022);
+}
+
+  .remaining {
+    font-size: 0.8em;
+    color: #888;
+    margin-top: 5px;
+  }
+    </style>
+</head>
+<body>
+    <!-- Tło z animacjami -->
+    <div class="background">
+        <div class="gradient-circle circle-1"></div>
+        <div class="gradient-circle circle-2"></div>
+        <div class="gradient-circle circle-3"></div>
+    </div>
+
+    <div class="container">
+        <!-- Nagłówek -->
+        <header>
+            <a href="#" class="logo">
+                <i class="fas fa-infinity logo-icon"></i>
+                !ONE
+            </a>
+            <div class="badge">ONE77</div>
+        </header>
+
+        <!-- Sekcja profilu -->
+        <section class="profile-section">
+            <div class="profile-image">
+                <img src="profile.png" alt="Profil">
+            </div>
+            <h1 class="profile-name">!One</h1>
+            <p class="profile-bio">Inwestor emocjonalny</p>
+            
+            <div class="stats">
+                <div class="stat-item">
+                    <div class="stat-number">1.3k</div>
+                    <div class="stat-label">YouTube</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">834</div>
+                    <div class="stat-label">Kick</div>
+                </div>
+                                <div class="stat-item">
+                    <div class="stat-number">1.4k+</div>
+                    <div class="stat-label">IG</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">1k+</div>
+                    <div class="stat-label">Discord</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sekcja linków -->
+        <section class="links-section">
+            <!-- Social Media -->
+            <div class="link-category">
+                <div class="category-title">
+                    <div class="category-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h2>Social Media</h2>
+                </div>
+                <ul class="link-list">
+                    <li class="link-item">
+                        <a href="https://www.instagram.com/one2.0/" target="_blank">
+                            <div class="link-icon">
+                                <i class="fab fa-instagram"></i>
+                            </div>
+                            <div class="link-text">
+                                <div class="link-title">Instagram</div>
+                                <div class="link-desc"></div>
+                            </div>
+                            <div class="link-arrow">
+                                <i class="fas fa-arrow-right"></i>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="link-item">
+                        <a href="https://www.youtube.com/@OneTap-g6k" target="_blank">
+                            <div class="link-icon">
+                                <i class="fab fa-youtube"></i>
+                            </div>
+                            <div class="link-text">
+                                <div class="link-title">YouTube</div>
+                                <div class="link-desc">Odcinki z CS2</div>
+                            </div>
+                            <div class="link-arrow">
+                                <i class="fas fa-arrow-right"></i>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="link-item">
+                        <a href="https://kick.com/onexpl" target="_blank">
+                            <div class="link-icon">
+                                <i class="fa-brands fa-kickstarter-k"></i>
+                            </div>
+                            <div class="link-text">
+                                <div class="link-title">Kick</div>
+                                <div class="link-desc">Transmisje na żywo</div>
+                            </div>
+                            <div class="link-arrow">
+                                <i class="fas fa-arrow-right"></i>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="link-item">
+                        <a href="https://www.tiktok.com/@xonepl" target="_blank">
+                            <div class="link-icon">
+                                <i class="fab fa-tiktok"></i>
+                            </div>
+                            <div class="link-text">
+                                <div class="link-title">TikTok</div>
+                                <div class="link-desc">Transmisje na żywo</div>
+                            </div>
+                            <div class="link-arrow">
+                                <i class="fas fa-arrow-right"></i>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Sponsorzy -->
+<div class="link-category">
+    <div class="category-title">
+        <div class="category-icon">
+            <i class="fas fa-handshake"></i>
+        </div>
+       <img src="csgoskins.png" alt="CSGO Skins" class="csgoskins-logo">
+    </div>
+
+    <div class="csgoskins-box">
+      <p>10% do wpłaty</p>
+      <p>2.10zł na start</p>
+
+        <div class="promo-code">
+            KOD: <span id="promoCode">ONE</span>
+        </div>
+
+        <button class="copy-btn" onclick="copyCode()">
+            <i class="fas fa-copy"></i> Kopiuj kod
+        </button>
+
+        <a href="https://csgo-skins.com/?ref=ONE " target="_blank" class="visit-btn">
+            Przejdź na stronę
+        </a>
+    </div>
+</div>
+
+            <!-- Projektowanie -->
+            <div class="link-category">
+                <div class="category-title">
+                    <div class="category-icon">
+                        <i class="fa-solid fa-user"></i>
+                    </div>
+                    <h2>TOP widzowie</h2>
+                </div>
+                <ul class="link-list">
+                    <li class="link-item">
+                        <a href="#" target="_blank">
+                            <div class="link-icon">
+                                <i class="fa-solid fa-user"></i>
+                            </div>
+                            <div class="link-text">
+                                <div class="link-title">Danvold #1</div>
+                              
+                            </div>
+                            <div class="link-arrow">
+                                <i class="fas fa-arrow-right"></i>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="link-item">
+                        <a href="#" target="_blank">
+                            <div class="link-icon">
+                                <i class="fa-solid fa-user"></i>
+                            </div>
+                            <div class="link-text">
+                                <div class="link-title">L3mon #2</div>
+                                
+                            </div>
+                            <div class="link-arrow">
+                                <i class="fas fa-arrow-right"></i>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="link-item">
+                        <a href="#" target="_blank">
+                            <div class="link-icon">
+                                <i class="fa-solid fa-user"></i>
+                            </div>
+                            <div class="link-text">
+                                <div class="link-title">TheMroczny #3</div>
+                                
+                            </div>
+                            <div class="link-arrow">
+                                <i class="fas fa-arrow-right"></i>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="link-item">
+                        <a href="#" target="_blank">
+                            <div class="link-icon">
+                                <i class="fa-solid fa-user"></i>
+                            </div>
+                            <div class="link-text">
+                                <div class="link-title">Yycio #4</div>
+                              
+                            </div>
+                            <div class="link-arrow">
+                                <i class="fas fa-arrow-right"></i>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Sekcja konkursów -->
+        <section class="contest-highlight">
+            <div class="contest-title">
+                <img src="kick.png" alt="Konkurs" class="kickrek">
+                <h2>DARMOWE NAGRODY KICK</h2>
+            </div>
+            <div class="contest-content">
+                <div class="contest-image">
+                    <img src="reklama.png" alt="Konkurs">
+                </div>
+                <div class="contest-details">
+                    <h3>Zgarniaj nagrody</h3>
+                    <p>Oglądaj transmisje na KICK aby zbierac punkty i odbierać genialne nagrody!</p>
+                    <a href="https://botrix.live/k/onexpl/shop" class="contest-button">Sprawdź nagrody</a>
+                </div>
+            </div>
+        </section>
+
+
+
+        
+<div class="prizes-container">
+  <div class="prize-card">
+    <img src="bilet.png" alt="Sztabka złota">
+    <h3>Złoty Bilet</h3>
+    <p>Złoty bilet dajacy udział w konkursie na kose!</p>
+    <div class="points">2000 punktów</div>
+    <a href="https://botrix.live/k/onexpl/shop" target="_blank" class="login-btn">Sprawdź</a>
+  </div>
+
+  <div class="prize-card">
+    <img src="kosa.png" alt="Skin 4200-5000 PLN">
+    <h3>Kosa</h3>
+    <p>Odbierz swoją kose w CS2</p>
+    <div class="points">50 000 punktów</div>
+    <a href="https://botrix.live/k/onexpl/shop" target="_blank" class="login-btn">Sprawdź</a>
+
+  </div>
+
+  <div class="prize-card">
+    <img src="skin.png" alt="Skin 2500-3000 PLN">
+    <h3>Czerwony skin</h3>
+    <p>Odbierz czerwonego skina w CS2</p>
+    <div class="points">25 000 punktów</div>
+    <a href="https://botrix.live/k/onexpl/shop" target="_blank" class="login-btn">Sprawdź</a>
+
+  </div>
+
+  <div class="prize-card">
+    <img src="gift.png" alt="Sony PS5">
+    <h3>GIFTCARD CSGO-SKINS</h3>
+    <p>Odbierz giftcarda na csgoskins! (Musisz miec 18+)</p>
+    <div class="points">15 000 punktów</div>
+    <a href="https://botrix.live/k/onexpl/shop" target="_blank" class="login-btn">Sprawdź</a>
+
+  </div>
+</div>
+
+        <!-- Stopka -->
+        <footer>
+            <p class="footer-text">© 2026 ONE. Wszystkie prawa zastrzeżone.</p>
+
+        </footer>
+    </div>
+
+    <script>
+        // Animacje dla elementów przy scrollowaniu
+        document.addEventListener('DOMContentLoaded', function() {
+            // Obserwator dla animacji przy przewijaniu
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animated');
+                    }
+                });
+            }, observerOptions);
+
+            // Obserwuj elementy do animacji
+            const elementsToAnimate = document.querySelectorAll('.link-category, .contest-highlight, .profile-section');
+            elementsToAnimate.forEach(el => observer.observe(el));
+
+            // Efekt "pulse" dla przycisku konkursowego
+            const contestButton = document.querySelector('.contest-button');
+            if (contestButton) {
+                setInterval(() => {
+                    contestButton.classList.toggle('pulse');
+                }, 3000);
+            }
+
+            // Efekt kopiowania linku (informacyjny)
+            const links = document.querySelectorAll('.link-item a');
+            links.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    // Jeśli link prowadzi do #, pokaż animację kliknięcia
+                    if (this.getAttribute('href') === '#') {
+                        e.preventDefault();
+                        
+                        // Dodaj efekt kliknięcia
+                        const icon = this.querySelector('.link-icon');
+                        const originalColor = icon.style.color;
+                        const originalBg = icon.style.background;
+                        
+                        icon.style.color = 'white';
+                        icon.style.background = 'var(--primary)';
+                        
+                        setTimeout(() => {
+                            icon.style.color = originalColor;
+                            icon.style.background = originalBg;
+                        }, 300);
+                        
+                        // Informacja
+                        alert('To jest przykład linku. W rzeczywistej aplikacji prowadziłby on do odpowiedniej strony.');
+                    }
+                });
+            });
+
+            // Dodaj efekt paralaksy dla tła
+            document.addEventListener('mousemove', function(e) {
+                const circles = document.querySelectorAll('.gradient-circle');
+                const x = e.clientX / window.innerWidth;
+                const y = e.clientY / window.innerHeight;
+                
+                circles.forEach((circle, index) => {
+                    const speed = 0.01 * (index + 1);
+                    const moveX = (x - 0.5) * 50 * speed;
+                    const moveY = (y - 0.5) * 50 * speed;
+                    
+                    circle.style.transform = `translate(${moveX}px, ${moveY}px)`;
+                });
+            });
+        });
+    </script>
+    <script>
+function copyCode() {
+    const code = document.getElementById("promoCode").innerText;
+    navigator.clipboard.writeText(code).then(() => {
+        alert("Kod ONE skopiowany!");
+    });
+}
+</script>
+</body>
+</html>
