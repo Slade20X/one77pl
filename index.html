@@ -9,6 +9,42 @@
   <style>
     * { box-sizing: border-box; }
 .btn,.grid{width:100%}.points-list,ul{list-style:none}.bg-bubbles,body.age-locked{overflow:hidden}body{background:radial-gradient(circle at top,rgba(34,197,94,.08),transparent 60%),radial-gradient(circle at bottom,rgba(34,197,94,.05),transparent 70%),#000;padding-bottom:120px}.container{min-height:100vh;padding:80px 24px;display:flex;flex-direction:column;align-items:center}.btn,.btn-row .btn{padding:14px;transition:.2s;cursor:pointer}.logo img{height:90px;margin-bottom:12px}.subtitle{color:#9ca3af;letter-spacing:.2em;margin-bottom:56px;text-align:center;font-size:12px}.green,.stat-value{color:#22c55e;text-shadow:0 0 10px rgba(34,197,94,.7)}.grid{max-width:1100px;display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:32px}.card.show{opacity:1;transform:translateY(0)}h3{margin-top:0;margin-bottom:16px;font-size:20px}ul{padding-left:0;color:#d4d4d8;font-size:14px}ul li{margin-bottom:10px}.btn.green{background:#22c55e;color:#000;box-shadow:0 0 15px rgba(34,197,94,.8)}.btn.blue{background:#38bdf8;color:#000;box-shadow:0 0 15px rgba(56,189,248,.8)}.btn:hover{filter:brightness(1.1)}.stats{margin-top:56px}.stat-value{font-size:32px;font-weight:700}.stat-label{margin-top:8px;font-size:11px;color:#9ca3af;letter-spacing:.15em;text-transform:uppercase}.btn{margin-top:auto;border:none;border-radius:14px;font-weight:600}.card{background:rgba(24,24,27,.8);border:1px solid #27272a;border-radius:18px;padding:24px;display:flex;flex-direction:column;opacity:0;transform:translateY(40px);transition:.6s}.points-list{padding:0;margin:0}.points-list li{display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.05);font-size:13px;color:#e5e7eb;text-transform:uppercase}.points-list li:last-child{border-bottom:none}.points-list .icon{width:20px;text-align:center;font-size:14px;color:#22c55e}.points-list .text{flex:1}.points-list .bonus{color:#22c55e;font-weight:700;text-shadow:0 0 8px rgba(34,197,94,.7)}.grid.four-cards{display:grid;grid-template-columns:repeat(4,260px);gap:32px;justify-content:center;margin:-80px auto 0 550px}@media (max-width:1024px){.grid.four-cards{grid-template-columns:repeat(2,1fr)}}@media (max-width:640px){.grid.four-cards{grid-template-columns:1fr}}.credit-badge{position:fixed;bottom:16px;right:16px;background:#1e1e1e;color:#eaeaea;padding:8px 12px;border-radius:999px;font-size:13px;display:flex;align-items:center;gap:6px;text-decoration:none;box-shadow:0 4px 12px rgba(0,0,0,.3);transition:background .2s,transform .2s;z-index:9999}.credit-badge i{font-size:12px}.credit-badge:hover{background:#2a2a2a;transform:translateY(-2px)}.bg-bubbles{position:fixed;inset:0;z-index:-1;pointer-events:none}.bg-bubbles span{position:absolute;bottom:-200px;width:160px;height:160px;background:radial-gradient(circle,rgba(34,197,94,.9),rgba(34,197,94,.05));border-radius:50%;filter:blur(40px);animation:linear infinite floatUp;opacity:.7}.bg-bubbles span:first-child{left:10%;width:220px;height:220px;animation-duration:28s}.bg-bubbles span:nth-child(2){left:25%;width:140px;height:140px;animation-duration:22s}.bg-bubbles span:nth-child(3){left:40%;width:300px;height:300px;animation-duration:35s}.bg-bubbles span:nth-child(4){left:55%;width:180px;height:180px;animation-duration:26s}.bg-bubbles span:nth-child(5){left:70%;width:260px;height:260px;animation-duration:40s}.bg-bubbles span:nth-child(6){left:85%;width:160px;height:160px;animation-duration:24s}.bg-bubbles span:nth-child(7){left:15%;width:120px;height:120px;animation-duration:20s}.bg-bubbles span:nth-child(8){left:35%;width:200px;height:200px;animation-duration:32s}.bg-bubbles span:nth-child(9){left:60%;width:150px;height:150px;animation-duration:23s}.bg-bubbles span:nth-child(10){left:75%;width:280px;height:280px;animation-duration:38s}@keyframes floatUp{0%{transform:translateY(0) translateX(0);opacity:0}10%{opacity:.6}50%{transform:translateY(-50vh) translateX(40px)}100%{transform:translateY(-120vh) translateX(-40px);opacity:0}}.btn-row{display:flex;gap:12px;margin-top:auto}.btn-row .btn{flex:1;border-radius:14px;font-weight:600}.btn.blue.secondary{background:#0ee9e9;box-shadow:0 0 15px rgba(14,165,233,.8)}.btn.blue.red{background:#e90e0e;box-shadow:0 0 15px rgba(233,14,14,.8)}#age-overlay{position:fixed;inset:0;background:rgba(0,0,0,.6);backdrop-filter:blur(8px);z-index:100000;display:flex;align-items:center;justify-content:center}.age-modal{background:rgba(24,24,27,.95);border:1px solid #27272a;border-radius:20px;padding:32px;max-width:420px;width:90%;text-align:center;box-shadow:0 0 40px rgba(34,197,94,.25);animation:.4s popIn}.age-modal h2{margin-top:0;color:#22c55e;text-shadow:0 0 10px rgba(34,197,94,.7)}.age-modal p{font-size:14px;color:#d4d4d8;margin-bottom:24px}.age-buttons{display:flex;gap:14px}@keyframes popIn{from{transform:scale(.9);opacity:0}to{transform:scale(1);opacity:1}}.btn-class-name{margin-top:100px;margin-left:920px;--primary:34,197,94;--secondary:34,197,94;width:60px;height:50px;border:none;outline:0;cursor:pointer;user-select:none;touch-action:manipulation;outline:10px solid rgb(var(--primary),.5);border-radius:100%;position:relative;transition:.3s}.btn-class-name .back,.btn-class-name .front{border-radius:100%;position:absolute;left:0;top:0;width:100%;height:100%}.btn-class-name .back{background:rgb(var(--secondary))}.btn-class-name .front{background:linear-gradient(0deg,rgba(var(--primary),.6) 20%,rgba(var(--primary)) 50%);box-shadow:0 .5em 1em -.2em rgba(var(--secondary),.5);border:1px solid rgb(var(--secondary));display:flex;justify-content:center;align-items:center;font-size:1.2rem;font-weight:600;font-family:inherit;transform:translateY(-15%);transition:.15s;color:rgb(var(--secondary))}.btn-class-name:active .front{transform:translateY(0);box-shadow:0 0}
+  @media (max-width: 640px) {
+
+  /* 4 klikane karty w 1 kolumnę */
+  .grid.four-cards {
+    grid-template-columns: 1fr;
+    margin: 40px auto 0 auto;
+    justify-items: center;
+    gap: 20px;
+  }
+
+  /* Zielony przycisk na dole strony */
+  .btn-class-name {
+    position: relative; /* już nie fixed */
+    bottom: auto;
+    left: auto;
+    transform: none;
+    margin: 20px auto 0 auto; /* dolny margines i wyśrodkowanie */
+    width: 60px;
+    height: 50px;
+  }
+
+  /* Logo w kartach skalowanie */
+  .four-cards .card img.card-logo {
+    width: 60%;
+    height: auto;
+  }
+
+  /* Credit badge przesunięty, żeby nie nachodził na przycisk */
+  .credit-badge {
+    bottom: 16px;
+    right: 16px;
+    font-size: 12px;
+    padding: 6px 10px;
+  }
+}
+
   </style>
 </head>
 <body>
