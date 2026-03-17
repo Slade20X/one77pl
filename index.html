@@ -1,1101 +1,403 @@
+<!DOCTYPE html>
 <html lang="pl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
-    <title>ONE.</title>
-    <link rel="shortcut icon" type="image/png" href="images/one.png">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;900&display=swap" rel="stylesheet">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        ::-webkit-scrollbar {
-            width: 4px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: #020617;
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: #46b289;
-            border-radius: 10px;
-        }
-
-        ::-webkit-scrollbar-thumb:hover {
-            background: #0de4a3;
-        }
-
-        * {
-            scrollbar-width: thin;
-            scrollbar-color: #0dd862 #020617;
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: 'Outfit', sans-serif;
-            background: #020617;
-            color: #f8fafc;
-            overflow-x: hidden;
-            width: 100%;
-            position: relative;
-            min-height: 100vh;
-        }
-
-        .top-banner {
-            width: 100%;
-            height: auto;
-            display: block;
-            object-fit: cover;
-            border-bottom: 2px solid rgba(70, 178, 124, 0.3);
-        }
-
-        .nav-container {
-            display: flex;
-            justify-content: center;
-            gap: 0.5rem;
-            margin: 1.5rem 0;
-            flex-wrap: wrap;
-            width: 100%;
-            padding: 0 0.5rem;
-        }
-
-        .nav-btn {
-            background: rgba(15, 23, 42, 0.8);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 2px solid rgba(70, 178, 115, 0.2);
-            color: rgba(70, 178, 119, 0.85);
-            padding: 0.6rem 1rem;
-            border-radius: 1rem;
-            font-weight: 900;
-            font-size: 0.65rem;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            transition: all 0.3s ease;
-            cursor: pointer;
-            flex: 0 1 auto;
-            min-width: 70px;
-            text-align: center;
-            white-space: nowrap;
-        }
-
-        @media (max-width: 400px) {
-            .nav-btn {
-                font-size: 0.55rem;
-                padding: 0.5rem 0.7rem;
-                min-width: 60px;
-                letter-spacing: 0.05em;
-            }
-        }
-
-        .nav-btn:hover {
-            background: rgba(70, 178, 137, 0.15);
-            color: #3aeeb2;
-            border-color: rgba(58, 238, 169, 0.4);
-        }
-
-        .bento-grid {
-            display: grid;
-            grid-template-columns: repeat(1, 1fr);
-            gap: 1rem;
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 0.5rem 1rem 2rem;
-            width: 100%;
-        }
-
-        @media (min-width: 640px) {
-            .bento-grid {
-                grid-template-columns: repeat(2, 1fr);
-                padding: 0.5rem 1.5rem 3rem;
-            }
-        }
-
-        @media (min-width: 1024px) {
-            .bento-grid {
-                grid-template-columns: repeat(3, 1fr);
-                padding: 0.5rem 2rem 4rem;
-            }
-        }
-
-        .bento-item {
-            background: rgba(30, 41, 59, 0.3);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 2px solid rgba(116, 70, 178, 0.15);
-            border-radius: 1.5rem;
-            padding: 1.25rem 1rem;
-            transition: all 0.3s ease;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            min-height: 160px;
-            text-decoration: none;
-            color: inherit;
-            width: 100%;
-        }
-
-        .bento-item:hover {
-            transform: translateY(-4px);
-            background: rgba(30, 59, 49, 0.5);
-            border-color: rgba(70, 178, 119, 0.4);
-        }
-
-        .partner-row-card {
-            grid-column: 1 / -1;
-            background: rgba(2, 11, 24, 0.95);
-            border: 2px solid rgba(70, 178, 128, 0.3);
-            border-radius: 2rem;
-            padding: 1.5rem 1rem;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 1.5rem;
-            position: relative;
-            width: 100%;
-        }
-
-        @media (min-width: 768px) {
-            .partner-row-card {
-                flex-direction: row;
-                justify-content: space-between;
-                padding: 2rem;
-                gap: 2rem;
-            }
-        }
-
-        .partner-row-info {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 1rem;
-            width: 100%;
-            text-align: center;
-        }
-
-        @media (min-width: 768px) {
-            .partner-row-info {
-                flex-direction: row;
-                text-align: left;
-                width: auto;
-            }
-        }
-
-        .partner-row-logo {
-            width: 70px;
-            height: 70px;
-            object-fit: contain;
-            border-radius: 1rem;
-            flex-shrink: 0;
-        }
-
-        @media (min-width: 768px) {
-            .partner-row-logo {
-                width: 80px;
-                height: 80px;
-            }
-        }
-
-        .partner-row-text h3 {
-            font-size: 1.5rem;
-            font-weight: 900;
-            font-style: italic;
-            text-transform: uppercase;
-            line-height: 1.2;
-            margin-bottom: 0.5rem;
-            color: #ffffff;
-        }
-
-        @media (min-width: 768px) {
-            .partner-row-text h3 {
-                font-size: 1.75rem;
-            }
-        }
-
-        .partner-row-desc {
-            font-size: 0.75rem;
-            color: #94a3b8;
-            font-weight: 600;
-        }
-
-        @media (min-width: 768px) {
-            .partner-row-desc {
-                font-size: 0.85rem;
-            }
-        }
-
-        .partner-row-desc p {
-            margin-bottom: 0.25rem;
-        }
-
-        .partner-row-actions {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            flex-wrap: wrap;
-            justify-content: center;
-            width: 100%;
-        }
-
-        @media (min-width: 768px) {
-            .partner-row-actions {
-                width: auto;
-                flex-wrap: nowrap;
-            }
-        }
-
-        .section-separator {
-            grid-column: 1 / -1;
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            margin: 1rem 0 0.5rem;
-            padding: 0;
-            width: 100%;
-        }
-
-        .separator-line {
-            height: 2px;
-            flex-grow: 1;
-            background: linear-gradient(90deg, transparent, rgba(70, 178, 128, 0.3), transparent);
-        }
-
-        .separator-text {
-            font-weight: 900;
-            font-size: 0.6rem;
-            letter-spacing: 0.3em;
-            text-transform: uppercase;
-            color: #46b280;
-            opacity: 0.9;
-            white-space: nowrap;
-        }
-
-        @media (min-width: 640px) {
-            .separator-text {
-                font-size: 0.7rem;
-                letter-spacing: 0.6em;
-            }
-        }
-
-        .action-btn {
-            background: linear-gradient(135deg, #46b27c, #3aeee5);
-            color: #ffffff;
-            height: 44px;
-            padding: 0 1.2rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 1rem;
-            font-weight: 900;
-            font-size: 0.75rem;
-            transition: all 0.2s;
-            text-transform: uppercase;
-            text-decoration: none;
-            border: none;
-            white-space: nowrap;
-        }
-
-        @media (min-width: 768px) {
-            .action-btn {
-                height: 54px;
-                padding: 0 2rem;
-                font-size: 0.85rem;
-                border-radius: 1.15rem;
-            }
-        }
-
-        .copy-pill {
-            background: linear-gradient(135deg, #46b27c, #3aeedf);
-            color: #ffffff;
-            width: 44px;
-            height: 44px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 1rem;
-            cursor: pointer;
-            transition: all 0.2s;
-            border: none;
-            flex-shrink: 0;
-        }
-
-        @media (min-width: 768px) {
-            .copy-pill {
-                width: 54px;
-                height: 54px;
-                border-radius: 1.15rem;
-            }
-        }
-
-        .copy-pill svg {
-            width: 20px;
-            height: 20px;
-        }
-
-        .flex-center-container {
-            grid-column: 1 / -1;
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-            width: 100%;
-        }
-
-        @media (min-width: 640px) {
-            .flex-center-container {
-                flex-direction: row;
-                flex-wrap: wrap;
-            }
-            
-            .flex-center-container .bento-item {
-                flex: 1 1 calc(50% - 0.5rem);
-            }
-        }
-
-        .stream-card-wrapper {
-            grid-column: 1 / -1;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 1rem;
-            width: 100%;
-            margin: 0 auto;
-        }
-
-        .stream-card {
-            background: rgba(15, 23, 42, 0.8);
-            border-radius: 1.5rem;
-            overflow: hidden;
-            border: 2px solid rgba(116, 70, 178, 0.2);
-            aspect-ratio: 16/9;
-            width: 100%;
-            max-width: 100%;
-        }
-
-        .stream-card iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
-
-        .platform-btn {
-            height: 48px;
-            background: linear-gradient(135deg, #46b277, #3aee8b);
-            color: #ffffff;
-            border-radius: 1.25rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 900;
-            text-transform: uppercase;
-            font-size: 0.8rem;
-            transition: all 0.3s;
-            text-decoration: none;
-            width: 100%;
-            max-width: 400px;
-            margin: 0 auto;
-        }
-
-        .live-status {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-weight: 900;
-            font-size: 10px;
-            text-transform: uppercase;
-            letter-spacing: 0.15em;
-            margin-bottom: 0.5rem;
-        }
-
-        .dot {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            animation: dot-pulse 1.5s infinite ease-in-out;
-        }
-
-        @keyframes dot-pulse {
-            0%, 100% { transform: scale(1); opacity: 1; }
-            50% { transform: scale(1.3); opacity: 0.5; }
-        }
-
-        .avatar-container {
-            position: relative;
-            display: inline-block;
-            margin: 1rem 0 1rem;
-        }
-
-        .avatar-img {
-            position: relative;
-            width: 100px;
-            height: 100px;
-            border-radius: 9999px;
-            border: 3px solid rgba(70, 178, 133, 0.5);
-            background: #0c7e47;
-            box-shadow: 0 0 25px rgba(70, 178, 124, 0.3);
-            z-index: 10;
-        }
-
-        @media (min-width: 768px) {
-            .avatar-img {
-                width: 128px;
-                height: 128px;
-            }
-        }
-
-        .avatar-glow {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 110px;
-            height: 110px;
-            background: rgba(14, 209, 209, 0.4);
-            filter: blur(30px);
-            border-radius: 50%;
-            z-index: 1;
-            animation: pulse-glow 3s infinite ease-in-out;
-        }
-
-        @media (min-width: 768px) {
-            .avatar-glow {
-                width: 140px;
-                height: 140px;
-            }
-        }
-
-        @keyframes pulse-glow {
-            0%, 100% { opacity: 0.4; transform: translate(-50%, -50%) scale(1); }
-            50% { opacity: 0.7; transform: translate(-50%, -50%) scale(1.1); }
-        }
-
-        .neon-text {
-            text-shadow: 0 0 20px rgba(70, 178, 106, 0.4);
-        }
-
-        .text-accent { 
-            color: #3aee61; 
-        }
-
-        .copy-email-small {
-            background: #46b289;
-            color: #ffffff;
-            width: 32px;
-            height: 32px;
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            margin-left: 10px;
-            border: none;
-            flex-shrink: 0;
-            transition: all 0.2s ease;
-        }
-
-        .copy-email-small:hover { 
-            background: #3ad9ee; 
-        }
-
-        .copy-email-small svg { 
-            width: 16px; 
-            height: 16px; 
-        }
-
-        #back-to-top {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            height: 44px;
-            padding: 0 1.2rem;
-            background: linear-gradient(135deg, #46b273, #3aeee5);
-            color: white;
-            border: none;
-            border-radius: 1.25rem;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            justify-content: center;
-            cursor: pointer;
-            z-index: 1000;
-            transition: all 0.4s ease;
-            box-shadow: 0 10px 25px rgba(27, 136, 85, 0.4);
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(20px);
-        }
-
-        @media (min-width: 768px) {
-            #back-to-top {
-                bottom: 30px;
-                right: 30px;
-                height: 52px;
-                padding: 0 1.5rem;
-            }
-        }
-
-        #back-to-top span {
-            font-weight: 900;
-            font-size: 0.7rem;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            font-style: italic;
-            white-space: nowrap;
-        }
-
-        @media (min-width: 768px) {
-            #back-to-top span {
-                font-size: 0.75rem;
-            }
-        }
-
-        #back-to-top.visible {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
-        }
-
-        #back-to-top svg {
-            width: 18px;
-            height: 18px;
-        }
-
-        .age-gate-modal {
-            background: rgba(15, 42, 42, 0.95);
-            backdrop-filter: blur(24px);
-            -webkit-backdrop-filter: blur(24px);
-            border: 2px solid #46b285;
-            border-radius: 2rem;
-            padding: 1.5rem;
-            margin: 1rem;
-            max-width: 500px;
-        }
-
-        @media (min-width: 768px) {
-            .age-gate-modal {
-                padding: 2rem;
-                border-radius: 2.5rem;
-            }
-        }
-
-        .bubble-bg {
-            position: fixed;
-            inset: 0;
-            overflow: hidden;
-            z-index: -1;
-            pointer-events: none;
-        }
-
-        .bubble-bg span {
-            position: absolute;
-            display: block;
-            border-radius: 50%;
-            background: radial-gradient(circle, rgba(70,255,200,0.9) 0%, rgba(70,255,200,0.4) 40%, rgba(70,255,200,0) 70%);
-            filter: blur(60px);
-            animation: float 25s linear infinite;
-            opacity: 0.5;
-        }
-
-        .bubble-bg span:nth-child(1) { width: 200px; height: 200px; left: 5%; animation-duration: 30s; }
-        .bubble-bg span:nth-child(2) { width: 150px; height: 150px; left: 70%; animation-duration: 22s; }
-        .bubble-bg span:nth-child(3) { width: 180px; height: 180px; left: 40%; animation-duration: 28s; }
-        .bubble-bg span:nth-child(4) { width: 140px; height: 140px; left: 80%; animation-duration: 26s; }
-        .bubble-bg span:nth-child(5) { width: 160px; height: 160px; left: 20%; animation-duration: 24s; }
-        .bubble-bg span:nth-child(6) { width: 200px; height: 200px; left: 55%; animation-duration: 32s; }
-
-        @keyframes float {
-            0% { transform: translateY(100vh) scale(1); }
-            50% { transform: translateY(50vh) scale(1.1); }
-            100% { transform: translateY(-20vh) scale(1); }
-        }
-
-        .creator-badge {
-            position: fixed;
-            right: 12px;
-            bottom: 12px;
-            display: inline-flex;
-            align-items: center;
-            gap: 4px;
-            padding: 6px 10px;
-            background: rgba(30, 30, 30, 0.95);
-            color: #fff;
-            font-size: 11px;
-            font-family: system-ui, sans-serif;
-            text-decoration: none;
-            border-radius: 999px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
-            transition: transform 0.15s ease;
-            z-index: 9999;
-            backdrop-filter: blur(4px);
-            -webkit-backdrop-filter: blur(4px);
-        }
-
-        @media (min-width: 768px) {
-            .creator-badge {
-                right: 16px;
-                bottom: 16px;
-                padding: 8px 12px;
-                font-size: 13px;
-            }
-        }
-
-        .creator-badge .arrow {
-            font-size: 10px;
-            opacity: 0.8;
-        }
-
-        #giveaway-modal {
-            position: fixed;
-            inset: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: rgba(0, 0, 0, 0.7);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-            z-index: 1000;
-            padding: 1rem;
-        }
-
-        #giveaway-content {
-            position: relative;
-            max-width: 90%;
-            width: 500px;
-            transform: scale(0.9);
-            transition: transform 0.3s ease;
-        }
-
-        #giveaway-content img {
-            width: 100%;
-            height: auto;
-            border-radius: 1.5rem;
-        }
-
-        .absolute.top-4.right-6 {
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-        }
-
-        .text-7xl {
-            font-size: 3.5rem;
-        }
-
-        @media (min-width: 768px) {
-            .text-7xl {
-                font-size: 4.5rem;
-            }
-        }
-
-        .max-w-xl {
-            max-width: 90%;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .px-6 {
-            padding-left: 1rem;
-            padding-right: 1rem;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <meta name="description" content="ONE - Wszystkie moje współprace i polecane projekty w jednym miejscu. Sprawdź linki do partnerów, social mediów i aktualnych działań.">
+  <meta property="og:title" content="ONE">
+  <meta property="og:description" content="ONE - CS2 content">
+  <meta property="og:image" content="https://one77.pl/ogimg.jpg">
+  <meta property="og:url" content="https://one77.pl">
+  <meta property="og:type" content="website">
+  
+
+<title>one</title>
+
+<link rel="icon" type="image/png" href="logo.png">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+font-family:'Inter',sans-serif;
+background:#000;
+color:#fff;
+overflow-x:hidden;
+overflow-y:hidden;
+scroll-behavior:smooth;
+}
+
+a{
+text-decoration:none;
+color:white;
+}
+
+/* ================= INTRO SCREEN ================= */
+
+#intro,.reward-card{align-items:center;width:100%}#intro,nav{display:flex}footer,header{text-align:center}.container,footer{padding:80px 20px}.card p,footer{font-size:14px}#intro,.card img,.reward-card,nav a:hover::after{width:100%}.chat-card,.stream-card{overflow:hidden;box-shadow:0 0 35px rgba(0,0,0,.6)}#intro{position:fixed;top:0;left:0;height:100vh;background:#000;justify-content:center;z-index:9999;animation:2s 2.5s forwards fadeOut}#intro img{width:140px;opacity:0;animation:2s forwards logoFade}@keyframes logoFade{0%{opacity:0;transform:scale(.9)}100%{opacity:1;transform:scale(1)}}@keyframes fadeOut{to{opacity:0;visibility:hidden}}.main{opacity:0;animation:1.5s 3s forwards showContent}@keyframes showContent{to{opacity:1}}header{padding:60px 20px 20px}header h1{font-size:42px;font-weight:600;letter-spacing:4px}nav{justify-content:center;gap:40px;margin-top:30px;flex-wrap:wrap}nav a{font-size:16px;position:relative;padding:5px 0}nav a::after{content:"";position:absolute;width:0;height:1px;left:0;bottom:-3px;background:#fff;transition:.3s}.container{max-width:1200px;margin:auto}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:30px}.card{background:#050505;border-radius:10px;overflow:hidden;transition:.4s;cursor:pointer;border:1px solid rgba(255,255,255,.05)}.card:hover{transform:scale(1.05);box-shadow:0 0 25px rgba(255,255,255,.1)}.card img{height:180px;object-fit:cover}.card-content{padding:25px}.card h3{margin-bottom:10px;font-weight:600}.card p{opacity:.7;line-height:1.5}.reveal{opacity:0;transform:translateY(40px);transition:1s}.logo,.platform-btn,.reward-card,.social{transition:.3s}.reveal.active{opacity:1;transform:translateY(0)}footer{opacity:.6}.reward-card-wrapper{display:flex;flex-direction:column;justify-content:center;align-items:center;padding:20px 10px;gap:20px;--border-color:#0c94d3}.reward-card{position:relative;background:#111;border-radius:12px;display:flex;padding:25px 60px;max-width:850px;gap:35px;overflow:hidden}.big-reward-card::before,.reward-card::before{content:"";position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:linear-gradient(0deg,transparent,transparent,var(--border-color),transparent,transparent);animation:4s linear infinite borderRotate;z-index:0}@keyframes borderRotate{0%{transform:rotate(0)}100%{transform:rotate(360deg)}}.reward-card-alt3{--border-color:#ffa600}.reward-card-alt{--border-color:#ffe600}.reward-card-alt2{--border-color:#00ff15}.big-reward-card::after,.reward-card::after{content:"";position:absolute;inset:2px;background:#111;border-radius:10px;z-index:1}.big-reward-card>*,.reward-card>*{position:relative;z-index:2}@keyframes borderRun{0%{background-position:0 50%}100%{background-position:300% 50%}}.reward-card:hover{transform:scale(1.03);box-shadow:0 0 30px rgba(255,255,255,.2)}.big-reward-grid img:hover,.logo:hover{transform:scale(1.05)}.reward-card-icon img{width:80px;height:80px;object-fit:contain}.reward-card-text h3{font-size:24px;margin-bottom:8px;font-weight:600}.reward-card-text p{font-size:16px;opacity:.8;margin:0}.reward-card-button{margin-left:auto;background:#0c94d3;color:#000;font-weight:600;padding:12px 22px;border-radius:8px;transition:.3s}.live-status,.separator-text{font-weight:900;text-transform:uppercase}.reward-card-button:hover{background:#0dabd3}.reward-card-alt .reward-card-button{background:#ffe600;color:#000}.reward-card-alt .reward-card-button:hover{background:#ccbe00}.reward-card-alt2 .reward-card-button{background:#00ff15;color:#000}.reward-card-alt2 .reward-card-button:hover{background:#07cc00}.reward-card-alt3 .reward-card-button{background:#f70101;color:#000}.reward-card-alt3 .reward-card-button:hover{background:#cc6d00}.section-separator{grid-column:1/-1;display:flex;align-items:center;gap:.75rem;margin:1rem 0 .5rem;padding:0;width:100%}.separator-line{height:2px;flex-grow:1;background:linear-gradient(90deg,transparent,rgba(239,243,241,.3),transparent)}.separator-text{font-size:.6rem;letter-spacing:.3em;color:#e9f3ee;opacity:.9;white-space:nowrap}@media (min-width:640px){.separator-text{font-size:.7rem;letter-spacing:.6em}}.live-status{display:flex;align-items:center;gap:8px;font-size:10px;letter-spacing:.15em;margin-bottom:.5rem}.dot{width:8px;height:8px;border-radius:50%;animation:1.5s ease-in-out infinite dot-pulse}@keyframes dot-pulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.3);opacity:.5}}.stream-card-wrapper{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:60px 20px}.stream-layout{display:grid;grid-template-columns:2fr 1fr;gap:20px;width:100%;max-width:1200px}.chat-card{border-radius:12px;border:1px solid rgba(255,255,255,.25);background:#0b0b0b;height:100%}.chat-card iframe,.stream-card iframe{width:100%;height:100%;border:0}.stream-card{width:100%;max-width:1100px;aspect-ratio:16/9;border-radius:12px;margin-top:10px;border:1px solid rgba(255,255,255,.25)}.platform-btn{margin-top:20px;background:#53fc18;color:#000;font-weight:600;padding:12px 24px;border-radius:8px}.platform-btn:hover{background:#40d813}.logo{width:130px;margin:auto;display:block;opacity:.95}.logo:hover{opacity:1}.social-nav{display:flex;justify-content:center;gap:35px;margin-top:30px}.social{font-size:26px;color:#fff}.youtube:hover{color:red}.twitch:hover{color:#9146ff}.kick:hover{color:#53fc18}.twitter:hover{color:#1da1f2}.instagram:hover{color:#e1306c}.discord:hover{color:#5865f2}.reward-buttons{display:flex;gap:10px;margin-left:auto}.second-btn{background:#0ad390;color:#000}.second-btn:hover{background:#05c088}.creator-badge{position:fixed;right:12px;bottom:12px;display:inline-flex;align-items:center;gap:4px;padding:6px 10px;background:rgba(30,30,30,.95);color:#fff;font-size:11px;font-family:system-ui,sans-serif;text-decoration:none;border-radius:999px;box-shadow:0 4px 12px rgba(0,0,0,.25);transition:transform .15s;z-index:9999;backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px)}.big-reward-card,.reward-item{position:relative;overflow:hidden}@media (min-width:768px){.creator-badge{right:16px;bottom:16px;padding:8px 12px;font-size:13px}}.creator-badge .arrow{font-size:10px;opacity:.8}.big-reward-wrapper{display:flex;justify-content:center;padding:40px 20px;--border-color:#f5f5f5}.big-reward-wrapper2{height:100%;display:flex;align-items:stretch;--border-color:#36ec08}.big-reward-card{background:#111;border-radius:12px;max-width:900px;width:100%;padding:35px;height:100%;display:flex;flex-direction:column}.big-reward-btn,.reward-item{border-radius:10px;text-align:center;transition:.3s}.big-reward-title{text-align:center;font-size:24px;margin-bottom:25px;font-weight:600}.big-reward-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:15px;margin-bottom:30px}.big-reward-grid img{width:100%;height:110px;object-fit:cover;border-radius:8px;transition:.3s}.mega-reward img,.reward-item img,.social-icon{object-fit:contain;object-fit:contain}.big-reward-btn{display:block;background:#c5cbce;color:#000;font-weight:700;padding:16px;font-size:18px}.big-reward-btn:hover{background:#e1e5e6}.double-reward-section{display:grid;grid-template-columns:1fr 1fr;align-items:start}.double-reward-section .big-reward-wrapper{padding:0}@media(max-width:900px){.double-reward-section,.stream-layout{grid-template-columns:1fr}.chat-card{height:400px}}.reward-gallery{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-bottom:30px;flex-grow:1}.double-reward-section{display:grid;grid-template-columns:1fr 1fr;gap:40px;max-width:1200px;margin:auto;padding:40px 20px;align-items:stretch}.reward-item{flex-direction:column;display:flex;align-items:center;justify-content:center}.reward-item img{margin-bottom:8px;width:100%;height:80px}.reward-item span{font-size:13px;opacity:.8;font-weight:500}.reward-item:hover{transform:translateY(-3px);box-shadow:0 0 20px rgba(234,236,236,.3)}@media(max-width:768px){header h1{font-size:30px}nav{gap:20px}.container{padding:60px 20px}.big-reward-grid,.reward-gallery{grid-template-columns:repeat(2,1fr)}.big-reward-grid img{height:95px}.reward-card{flex-direction:column;align-items:center;text-align:center;padding:25px 20px;gap:18px}.reward-card-icon img{width:70px;height:70px}.reward-card-text h3{font-size:20px}.reward-card-text p{font-size:14px}.reward-buttons{margin-left:0;flex-direction:column;width:100%}.reward-card-button{margin-left:0;width:100%;text-align:center}}.social-icon{width:26px;height:26px;filter:brightness(0) invert(1);transition:.3s}.social-icon:hover{transform:scale(1.1)}.reward-item{background:#0a0a0a;padding:12px;border:1px solid rgba(255,255,255,.08);align-items:center;justify-content:center}.skin-price{position:static;margin-top:6px;background:rgba(0,0,0,.8);padding:4px 8px;border-radius:6px;font-size:12px;font-weight:600;color:#53fc18;border:1px solid rgba(255,255,255,.1)}.won-label{position:absolute;top:16px;left:-35px;width:140px;text-align:center;transform:rotate(-45deg);background:#f03;color:#fff;font-size:10px;font-weight:700;padding:6px 0;letter-spacing:1px;box-shadow:0 0 10px rgba(0,0,0,.5)}.reward-item.won img{opacity:.5;filter:grayscale(40%)}.mega-reward{position:relative;background:#0a0a0a;border-radius:12px;border:1px solid rgba(255,255,255,.08);padding:20px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;height:420px;transition:.3s;overflow:hidden}.mega-reward:hover{transform:translateY(-4px);box-shadow:0 0 25px rgba(5,202,38,.2)}.mega-reward img{max-width:80%;max-height:200px;margin-bottom:12px}.mega-reward span{font-size:18px;font-weight:600;margin-bottom:6px}@media (max-width:768px){.double-reward-section{grid-template-columns:1fr;gap:25px;padding:25px 15px}.big-reward-card{padding:25px 18px}.reward-gallery{grid-template-columns:repeat(2,1fr);gap:12px}.reward-item{padding:10px}.reward-item img{height:70px}.reward-item span{font-size:12px}.skin-price{font-size:11px;padding:3px 6px}.mega-reward{height:auto;padding:25px 15px}.mega-reward img{max-height:150px}.mega-reward span{font-size:16px}}
+
+
+/* ===== LED SECTION ===== */
+
+.led-section-wrapper{
+display:flex;
+justify-content:center;
+padding:40px 20px;
+--border-color:#ffffff;
+}
+
+.led-section{
+position:relative;
+width:100%;
+max-width:1200px;
+display:flex;
+gap:20px;
+padding:25px;
+border-radius:14px;
+background:#111;
+overflow:hidden;
+}
+
+/* animated white border */
+.led-section::before{
+content:"";
+position:absolute;
+top:-50%;
+left:-50%;
+width:200%;
+height:200%;
+background:linear-gradient(
+0deg,
+transparent,
+transparent,
+var(--border-color),
+transparent,
+transparent
+);
+animation:borderRotate 5s linear infinite;
+z-index:0;
+}
+
+.led-section::after{
+content:"";
+position:absolute;
+inset:2px;
+background:#111;
+border-radius:12px;
+z-index:1;
+}
+
+.led-section > *{
+position:relative;
+z-index:2;
+}
+
+/* MINI CARDS */
+
+.mini-card{
+flex:1;
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:center;
+gap:10px;
+padding:40px 20px;
+background:#0a0a0a;
+border-radius:10px;
+border:1px solid rgba(255,255,255,0.08);
+text-align:center;
+transition:.3s;
+font-weight:600;
+font-size:18px;
+}
+
+.mini-card i{
+font-size:32px;
+}
+
+.mini-card:hover{
+transform:scale(1.05);
+box-shadow:0 0 25px rgba(255,255,255,0.15);
+}
+
+/* mobile */
+@media(max-width:768px){
+.led-section{
+flex-direction:column;
+}
+}
+
+.footer {
+  background: linear-gradient(180deg, #0b0f1a, #070a12);
+  color: #aaa;
+  text-align: center;
+  padding: 40px 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+.footer-content h2 {
+  color: #bb2d2d;
+  font-size: 18px;
+  letter-spacing: 2px;
+  margin-bottom: 15px;
+}
+
+.footer-content p {
+  font-size: 13px;
+  max-width: 700px;
+  margin: 0 auto;
+  color: #888;
+  line-height: 1.6;
+}
+</style>
 </head>
+
 <body>
-    <div class="bubble-bg">
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-    </div>
-    
-    <div class="relative w-full overflow-hidden">
-        <a href="https://www.youtube.com/@OneTap-g6k" target="_blank" class="banner-link">
-            <img src="images/.png" class="top-banner" alt="one Banner" onerror="this.style.display='none'">
-        </a>
-    </div>
 
-    <button id="back-to-top" onclick="scrollToTop()" aria-label="Wróć na górę">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-            <polyline points="18 15 12 9 6 15"></polyline>
-        </svg>
-        <span>Wróć na górę</span>
-    </button>
+<!-- INTRO SCREEN -->
 
-    <div id="age-gate" class="fixed inset-0 z-[100] flex items-center justify-center bg-black/80 backdrop-blur-sm opacity-0 invisible transition-all duration-500" style="backdrop-filter: blur(8px);">
-        <div class="age-gate-modal text-center">
-            <h2 class="text-3xl md:text-4xl font-black italic uppercase tracking-tighter mb-4 neon-text">Weryfikacja wieku</h2>
-            <p class="text-slate-400 font-medium text-sm leading-relaxed mb-8 px-2">
-                Ta oferta jest przeznaczona wyłącznie dla osób <span class="text-white font-bold">pełnoletnich</span>.
-                Prosimy o potwierdzenie wieku, aby kontynuować.
-            </p>
-            <div class="flex flex-col sm:flex-row gap-3">
-                <button onclick="confirmAge()" class="flex-1 h-12 md:h-14 rounded-xl md:rounded-2xl bg-[#3aee61] text-white font-black uppercase italic tracking-wider text-sm">Tak, mam 18 lat</button>
-                <button onclick="closeAgeGate()" class="flex-1 h-12 md:h-14 rounded-xl md:rounded-2xl bg-white/10 font-bold uppercase text-xs tracking-widest text-white/70">Wróć</button>
-            </div>
-            <p class="mt-6 text-[8px] text-slate-500 uppercase tracking-widest opacity-50">Graj odpowiedzialnie</p>
-        </div>
-    </div>
-
-    <div class="max-w-xl mx-auto pt-4 md:pt-8 px-4 text-center">
-        <div class="avatar-container">
-            <div class="avatar-glow"></div>
-
-        </div>
-        <h1 class="text-5xl md:text-7xl font-black neon-text italic mb-4 md:mb-6 tracking-tighter text-white">ONE.</h1>
-    </div>
-
-    <div class="max-w-4xl mx-auto px-3">
-        <div class="nav-container">
-            <button onclick="scrollToId('sec-wspolpraca')" class="nav-btn">Współpraca</button>
-            <button onclick="scrollToId('sec-social')" class="nav-btn">Social Media</button>
-            <button onclick="scrollToId('sec-kontakt')" class="nav-btn">DONATE / KONTAKT</button>
-            <button onclick="scrollToId('sec-live')" class="nav-btn">Platformy</button>
-        </div>
-    </div>
-
-    <div class="bento-grid">
-        <div id="sec-wspolpraca" class="section-separator">
-            <div class="separator-line"></div>
-            <span class="separator-text">Współpraca</span>
-            <div class="separator-line"></div>
-        </div>
-
-        <div class="partner-row-card relative">
-            <div class="absolute top-3 right-4 md:top-4 md:right-6">
-                <p class="text-red-600 font-black text-[10px] md:text-xs">18+</p>
-            </div>
-            <div class="partner-row-info">
-                <img src="images/csgoskins.png" class="partner-row-logo" alt="CSGOSKINS" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2280%22 height=%2280%22 viewBox=%220 0 24 24%22 fill=%22%2346b289%22><path d=%22M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z%22/></svg>'">
-                <div class="partner-row-text">
-                    <h3><span style="color: #0fdeec;">CSGO</span><span style="color: #ffffff;">SKINS</span></h3>
-                    <div class="partner-row-desc">
-                        <p><span class="checkmark text-[#3aee61]">✓</span> +10% BONUSU DO DEPOZYTU</p>
-                        <p><span class="checkmark text-[#3aee61]">✓</span> 2.10zł na start <span class="text-accent">ONE</span></p>
-                        <p><span class="checkmark text-[#3aee61]">✓</span> Udział w giveawayach</p>
-                    </div>
-                </div>
-            </div>
-            <div class="partner-row-actions">
-                <button onclick="openGiveaway()" class="action-btn">GIVEAWAYE</button>
-                <button onclick="checkAge('https://csgo-skins.com/?ref=ONE')" class="action-btn">STRONA</button>
-                <button onclick="copyCode('ONE')" class="copy-pill" title="Kopiuj kod">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
-                        <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
-                    </svg>
-                </button>
-            </div>
-        </div>
-
-              <div class="partner-row-card relative">
-            <div class="absolute top-3 right-4 md:top-4 md:right-6">
-                <p class="text-red-600 font-black text-[10px] md:text-xs">18+</p>
-            </div>
-            <div class="partner-row-info">
-                <img src="images/casehug.png" class="partner-row-logo" alt="CSGOSKINS" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2280%22 height=%2280%22 viewBox=%220 0 24 24%22 fill=%22%2346b289%22><path d=%22M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z%22/></svg>'">
-                <div class="partner-row-text">
-                    <h3><span style="color: #dadada;">CASE</span><span style="color: #fa0505;">HUG</span></h3>
-                    <div class="partner-row-desc">
-                        <p><span class="checkmark text-[#3aee61]">✓</span> +20% BONUSU DO DEPOZYTU</p>
-                        <p><span class="checkmark text-[#3aee61]">✓</span> 1$ na start <span class="text-accent">ONE</span></p>
-                        <p><span class="checkmark text-[#3aee61]">✓</span> Udział w giveawayach</p>
-                    </div>
-                </div>
-            </div>
-            <div class="partner-row-actions">
-                 <button onclick="checkAge('https://casehug.com/r/ONE')" class="action-btn">GIVEAWAYE</button>
-                <button onclick="checkAge('https://casehug.com/r/ONE')" class="action-btn">STRONA</button>
-                <button onclick="copyCode('ONE')" class="copy-pill" title="Kopiuj kod">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
-                        <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
-                    </svg>
-                </button>
-            </div>
-        </div>
-
-        <div class="partner-row-card">
-            <div class="partner-row-info">
-                <img src="images/one.png" class="partner-row-logo" alt="one" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2280%22 height=%2280%22 viewBox=%220 0 24 24%22 fill=%22%2346b289%22><circle cx=%2212%22 cy=%2212%22 r=%2210%22/></svg>'">
-                <div class="partner-row-text">
-                    <h3><span style="color: #ffffff;">O</span><span style="color: #3aee94;">N</span><span style="color: #ffffff;">E</span></h3>
-                    <div class="partner-row-desc">
-                        <p><span class="checkmark text-[#3aee61]">✓</span> ODCINKI CODZIENNIE!</p>
-                    </div>
-                </div>
-            </div>
-            <div class="partner-row-actions">
-                <a href="https://www.youtube.com/@OneTap-g6k" target="_blank" class="action-btn">IDŹ NA KANAŁ</a>
-            </div>
-        </div>
-
-        <div id="sec-social" class="section-separator">
-            <div class="separator-line"></div>
-            <span class="separator-text">Social Media</span>
-            <div class="separator-line"></div>
-        </div>
+<div id="intro">
+<img src="logo.png" alt="logo">
+</div>
 
 
-               <a href="https://www.instagram.com/one2.0/" target="_blank" class="bento-item" style="border-color: rgba(225, 48, 108, 0.3);">
-            <div class="w-16 h-16 md:w-20 md:h-20 flex items-center justify-center mb-2">
-           <div class="w-20 h-20 flex items-center justify-center mb-2"><img src="images/neoninstagram.png" class="w-14 h-14 object-contain" alt="Tiktok"></div>
-            </div>
-            <span class="font-black italic uppercase text-base md:text-lg" style="color: #e1306c;">Instagram</span>
-        </a>
+<div class="main">
 
-        <a href="https://kick.com/onecsgo" target="_blank" class="bento-item" style="border-color: rgba(83, 252, 24, 0.3);">
-            <div class="w-16 h-16 md:w-20 md:h-20 flex items-center justify-center mb-2">
-     <div class="w-20 h-20 flex items-center justify-center mb-2"><img src="images/kick2.png" class="w-14 h-14 object-contain" alt="Tiktok"></div>
-            </div>
-            <span class="font-black italic uppercase text-base md:text-lg" style="color: #53fc18;">Kick</span>
-        </a>
+<header>
 
-        <a href="https://discord.gg/bntDPQVYpy" target="_blank" class="bento-item" style="border-color: rgba(88, 101, 242, 0.3);">
-            <div class="w-16 h-16 md:w-20 md:h-20 flex items-center justify-center mb-2">
-           <div class="w-20 h-20 flex items-center justify-center mb-2"><img src="images/discord2.png" class="w-14 h-14 object-contain" alt="Tiktok"></div>
-            </div>
-            <span class="font-black italic uppercase text-base md:text-lg" style="color: #5865f2;">Discord</span>
-        </a>
+<img src="logo.png" class="logo">
 
-        <a href="https://www.youtube.com/@OneTap-g6k" target="_blank" class="bento-item" style="border-color: rgba(255, 0, 0, 0.3);">
-            <div class="w-16 h-16 md:w-20 md:h-20 flex items-center justify-center mb-2">
-          <div class="w-20 h-20 flex items-center justify-center mb-2"><img src="images/neonyt.png" class="w-14 h-14 object-contain" alt="Tiktok"></div>
-            </div>
-            <span class="font-black italic uppercase text-base md:text-lg" style="color: #ff0000;">Youtube</span>
-        </a>
+<nav class="social-nav">
 
-                <a href="https://www.twitch.tv/onecsgo_" target="_blank" class="bento-item" style="border-color: rgba(145, 70, 255, 0.3);">
-            <div class="w-16 h-16 md:w-20 md:h-20 flex items-center justify-center mb-2">
-          <div class="w-20 h-20 flex items-center justify-center mb-2"><img src="images/neontwitch.png" class="w-14 h-14 object-contain" alt="Tiktok"></div>
-            </div>
-            <span class="font-black italic uppercase text-base md:text-lg" style="color: #9146ff;">Twitch</span>
-        </a>
+<a href="https://kick.com/onecsgo" class="social kick" target="_blank" rel="noopener noreferrer">
+<i class="fa-brands fa-kickstarter-k"></i>
+</a>
 
-        <a href="https://www.tiktok.com/@onecsgo_" target="_blank" class="bento-item" style="border-color: rgba(255, 255, 255, 0.3);">
-            <div class="w-16 h-16 md:w-20 md:h-20 flex items-center justify-center mb-2">
-           <div class="w-20 h-20 flex items-center justify-center mb-2"><img src="images/tiktok.png" class="w-14 h-14 object-contain" alt="Tiktok"></div>
-            </div>
-            <span class="font-black italic uppercase text-base md:text-lg text-white">Tiktok</span>
-        </a>
+<a href="https://www.youtube.com/@OneTap-g6k" class="social youtube" target="_blank" rel="noopener noreferrer">
+<i class="fab fa-youtube"></i>
+</a>
 
-        <div id="sec-kontakt" class="section-separator">
-            <div class="separator-line"></div>
-            <span class="separator-text">Wesprzyj Twórcę / Kontakt</span>
-            <div class="separator-line"></div>
-        </div>
+<a href="https://www.instagram.com/one2.0" class="social instagram" target="_blank" rel="noopener noreferrer">
+<i class="fab fa-instagram"></i>
+</a>
 
-        <div class="flex-center-container">
-            <a href="https://tipply.pl/@one_csgo" target="_blank" class="bento-item">
-                <div class="w-16 h-16 md:w-20 md:h-20 flex items-center justify-center mb-2">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="#0de4a3" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-12 h-12 md:w-16 md:h-16">
-                        <line x1="12" y1="1" x2="12" y2="23"></line>
-                        <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
-                    </svg>
-                </div>
-                <span class="text-[9px] md:text-[10px] font-black uppercase tracking-[0.1em] text-[#0de4a3] mb-1">WESPRZYJ TWÓRCĘ</span>
-                <span class="text-white font-black text-xs md:text-sm uppercase italic text-center">Kliknij, aby wysłać donate</span>
-                <p class="text-[8px] md:text-[9px] text-slate-500 uppercase mt-2">Nie podlega zwrotom</p>
-            </a>
+<a href="https://discord.gg/bntDPQVYpy" class="social discord" target="_blank" rel="noopener noreferrer">
+<i class="fab fa-discord"></i>
+</a>
 
-            <div class="bento-item">
-                <div class="w-16 h-16 md:w-20 md:h-20 flex items-center justify-center mb-2">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="#f8fafc" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-12 h-12 md:w-16 md:h-16">
-                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-                        <polyline points="22,6 12,13 2,6"></polyline>
-                    </svg>
-                </div>
-                <span class="text-[9px] md:text-[10px] font-black uppercase tracking-[0.1em] text-[#3aee61] mb-1">KONTAKT BIZNESOWY</span>
-                <div class="flex items-center mt-1 flex-wrap justify-center">
-                    <p class="text-white font-black text-xs md:text-sm">one@stormmedia.gg</p>
-                    <button onclick="copyEmail('one@stormmedia.gg')" class="copy-email-small ml-2" title="Kopiuj email">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
-                            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-                            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
-                        </svg>
-                    </button>
-                </div>
-            </div>
-        </div>
+<a href="https://www.tiktok.com/@onecsgo_" class="social tiktok" target="_blank" rel="noopener noreferrer">
+<i class="fab fa-tiktok"></i>
+</a>
+
+
+</nav>
+
+</header>
 
         <div id="sec-live" class="section-separator">
             <div class="separator-line"></div>
-            <span class="separator-text">Platformy Live</span>
+            <span class="separator-text">Współprace</span>
+            <div class="separator-line"></div>
+        </div>
+<!-- Dodaj to wewnątrz <body> przed <footer> -->
+
+<div class="reward-card-wrapper">
+  <div class="reward-card">
+    <div class="reward-card-icon">
+      <img src="csgoskins.png" alt="Nagrody">
+    </div>
+    <div class="reward-card-text">
+      <h3>CSGOSKINS</h3>
+      <p>10% do wpłaty & 2.10zł na start!</p>
+    </div>
+    <div class="reward-buttons">
+  <a href="https://csgo-skins.com/?ref=ONE" class="reward-card-button">PRZEJDŹ →</a>
+</div>
+  </div>
+</div>
+
+<div class="reward-card-wrapper reward-card-alt3">
+  <div class="reward-card">
+    <div class="reward-card-icon">
+      <img src="casehug.png" alt="Nagrody">
+    </div>
+    <div class="reward-card-text">
+      <h3>PIRATESWAP</h3>
+      <p>35% do doładowania!</p>
+    </div>
+    <a href="https://casehug.com/r/ONE" class="reward-card-button">WYMIEŃ →</a>
+  </div>
+</div>
+
+<div class="reward-card-wrapper reward-card-alt2">
+  <div class="reward-card">
+    <div class="reward-card-icon">
+      <img src="kicklogo.png" alt="Nagrody">
+    </div>
+    <div class="reward-card-text">
+      <h3>STREAMY NA KICKU</h3>
+      <p>Zdobywaj punkty za oglądanie!</p>
+    </div>
+    <a href="https://kick.com/onecsgo" class="reward-card-button">OGLĄDAJ →</a>
+  </div>
+</div>
+
+        <div id="sec-live" class="section-separator">
+            <div class="separator-line"></div>
+            <span class="separator-text">Nagrody do zdobycia</span>
             <div class="separator-line"></div>
         </div>
 
-        <div class="stream-card-wrapper">
-            <div class="live-status" style="color: #53fc18;">
-                <div class="dot" style="background: #53fc18; box-shadow: 0 0 8px #53fc18;"></div>
-                KICK LIVE
-            </div>
-            <div class="stream-card">
-                <iframe src="https://player.kick.com/onecsgo" allowfullscreen="true" title="Kick Stream"></iframe>
-            </div>
-            <a href="https://kick.com/onecsgo" target="_blank" class="platform-btn">OTWÓRZ KICK.COM</a>
+<div class="double-reward-section">
+
+<div class="big-reward-wrapper">
+<div class="big-reward-card">
+
+<div class="big-reward-title">
+NAGRODY ZA WPŁATY
+</div>
+<div class="reward-gallery">
+
+<div class="reward-item won">
+<img src="falch2.png">
+<span>Falchion Slaughter</span>
+<div class="skin-price">1100zł</div>
+<div class="won-label">WYLOSOWANE</div>
+</div>
+
+<div class="reward-item">
+<img src="gut.png">
+<span>Gut Knife Doppler</span>
+<div class="skin-price">912zł</div>
+<div class="won-label">WYLOSOWANE</div>
+</div>
+ 
+<div class="reward-item">
+<img src="m9.png">
+<span>M9 Blue steel</span>
+<div class="skin-price">3000zł</div>
+</div>
+
+<div class="reward-item">
+<img src="talon.png">
+<span>Talon Tiger Tooth</span>
+<div class="skin-price">3100zł</div>
+</div>
+
+<div class="reward-item">
+<img src="falch.png">
+<span>Falchion Gamma Doppler</span>
+<div class="skin-price">1200zł</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="big-reward-wrapper2">
+<div class="big-reward-card">
+
+<div class="big-reward-title">
+NAGRODA ZA OGLĄDANIE
+</div>
+
+<div class="mega-reward">
+<img src="bowie.png">
+<span>KOSA</span>
+<div class="skin-price">1700zł</div>
+</div>
+
+</div>
+</div>
+</div>
+
+    <div class="section-separator">
+  <div class="separator-line"></div>
+  <span class="separator-text">Wsparcie / Kontakt</span>
+  <div class="separator-line"></div>
+</div>
+
+<div class="led-section-wrapper">
+  <div class="led-section">
+
+    <!-- LEFT CARD -->
+    <a href="https://tipply.pl/@one_csgo" target="_blank" class="mini-card">
+      <i class="fas fa-dollar-sign"></i>
+      <span>DONATE</span>
+    </a>
+
+    <!-- RIGHT CARD -->
+    <a href="mailto:one@stormmedia.gg" class="mini-card">
+      <i class="fas fa-envelope"></i>
+      <span>KONTAKT
+        <li>one@stormmedia.gg</li>
+      </span>
+      <a></a>
+    </a>
+
+  </div>
+</div>
+
+
+
+
+        <div id="sec-live" class="section-separator">
+            <div class="separator-line"></div>
+            <span class="separator-text">Live</span>
+            <div class="separator-line"></div>
         </div>
-    </div>
 
-    <footer class="text-center pb-16 pt-4 text-gray-300 text-[9px] md:text-[10px] tracking-[0.15em] uppercase px-4 max-w-4xl mx-auto">
-        <strong class="text-[#3aee94] block mb-3 text-xs md:text-xs font-black">© 2026</strong>
-    </footer>
 
-    <div id="toast" class="fixed bottom-10 left-1/2 -translate-x-1/2 bg-[#fc1818] text-white px-6 py-3 rounded-2xl font-black shadow-2xl transition-all duration-500 opacity-0 translate-y-10 pointer-events-none z-50 text-sm">SKOPIOWANO!</div>
-
-    <a href="https://essenceagency.pl" target="_blank" class="creator-badge">
+<div class="stream-card-wrapper">
+  <div class="live-status" style="color: #53fc18;">
+    <div class="dot" style="background: #53fc18; box-shadow: 0 0 8px #53fc18;"></div>
+    STREAM
+  </div>
+<div class="stream-card">
+  <iframe
+    src="https://player.kick.com/onecsgo"
+    allowfullscreen
+    sandbox="allow-scripts allow-same-origin allow-presentation"
+    referrerpolicy="strict-origin-when-cross-origin"
+    title="Kick Stream">
+  </iframe>
+</div>
+</div>
+                  <!-- essence tag-->
+        <a href="https://essenceagency.pl" target="_blank" class="creator-badge">
         stworzone przez <strong>ESSENCE</strong>
         <span class="arrow">↗</span>
     </a>
 
-    <audio id="bg-music" autoplay loop muted>
-        <source src="muzyka.mp3" type="audio/mpeg">
-    </audio>
+<footer>
+    <div class="footer-line"></div>
+  
+  <div class="footer-content">
+    <h2>GRAJ ODPOWIEDZIALNIE!</h2>
+    <p>
+      Strona zawiera linki do zewnętrznych serwisów. Korzystanie z nich odbywa się
+      na własną odpowiedzialność i powinno być zgodne z obowiązującym prawem w Twoim kraju.
+    </p>
+  </div>
+© 2026 one
+</footer>
 
-    <div id="giveaway-modal" class="fixed inset-0 flex items-center justify-center bg-black/80 opacity-0 invisible transition-all duration-300 z-[200]" style="backdrop-filter: blur(8px);">
-        <div class="relative max-w-[90%] md:max-w-3xl w-full transform scale-90 transition-all duration-300" id="giveaway-content">
-            <button onclick="closeGiveaway()" class="absolute -top-3 -right-3 md:-top-5 md:-right-5 bg-[#3aee94] text-black font-black rounded-full w-10 h-10 md:w-12 md:h-12 flex items-center justify-center shadow-xl hover:scale-110 transition z-10 text-xl md:text-2xl">
-                ✕
-            </button>
-            <img src="images/giv.png" alt="Giveaway" class="rounded-2xl md:rounded-3xl shadow-2xl w-full" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22500%22 height=%22300%22 viewBox=%220 0 500 300%22><rect width=%22500%22 height=%22300%22 fill=%22%233aee94%22/><text x=%2250%25%22 y=%2250%25%22 font-size=%2224%22 fill=%22white%22 text-anchor=%22middle%22 dy=%22.3em%22>GIVEAWAY</text></svg>'">
-        </div>
-    </div>
+</div>
 
+<script>
 
-    <script>
-        let pendingUrl = '';
+setTimeout(function(){
+document.body.style.overflowY = "auto";
+}, 3000);
 
-        function scrollToId(id) {
-            const element = document.getElementById(id);
-            if (element) { 
-                element.scrollIntoView({ behavior: 'smooth', block: 'start' }); 
-            }
-        }
-
-        function scrollToTop() {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-        }
-
-        window.addEventListener('scroll', () => {
-            const btn = document.getElementById('back-to-top');
-            if (window.pageYOffset > 300) {
-                btn.classList.add('visible');
-            } else {
-                btn.classList.remove('visible');
-            }
-        });
-
-        function checkAge(url) {
-            pendingUrl = url;
-            const gate = document.getElementById('age-gate');
-            gate.classList.remove('invisible', 'opacity-0');
-            gate.classList.add('visible', 'opacity-100');
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closeAgeGate() {
-            const gate = document.getElementById('age-gate');
-            gate.classList.remove('visible', 'opacity-100');
-            gate.classList.add('invisible', 'opacity-0');
-            document.body.style.overflow = '';
-            pendingUrl = '';
-        }
-
-        function confirmAge() {
-            if (pendingUrl) window.open(pendingUrl, '_blank');
-            closeAgeGate();
-        }
-
-        function copyEmail(email) {
-            const el = document.createElement('textarea');
-            el.value = email;
-            document.body.appendChild(el);
-            el.select();
-            document.execCommand('copy');
-            document.body.removeChild(el);
-            showToast("SKOPIOWANO E-MAIL!");
-        }
-
-        function copyCode(code) {
-            const el = document.createElement('textarea');
-            el.value = code;
-            document.body.appendChild(el);
-            el.select();
-            document.execCommand('copy');
-            document.body.removeChild(el);
-            showToast("SKOPIOWANO KOD!");
-        }
-
-        function showToast(text) {
-            const t = document.getElementById('toast');
-            t.innerText = text;
-            t.classList.remove('opacity-0', 'translate-y-10');
-            setTimeout(() => t.classList.add('opacity-0', 'translate-y-10'), 2000);
-        }
-
-        function openGiveaway() {
-            const modal = document.getElementById("giveaway-modal");
-            const content = document.getElementById("giveaway-content");
-            modal.classList.remove("invisible", "opacity-0");
-            modal.classList.add("visible", "opacity-100");
-            setTimeout(() => {
-                content.classList.remove("scale-90");
-                content.classList.add("scale-100");
-            }, 10);
-            document.body.style.overflow = "hidden";
-        }
-
-        function closeGiveaway() {
-            const modal = document.getElementById("giveaway-modal");
-            const content = document.getElementById("giveaway-content");
-            content.classList.remove("scale-100");
-            content.classList.add("scale-90");
-            modal.classList.remove("opacity-100");
-            modal.classList.add("opacity-0");
-            setTimeout(() => {
-                modal.classList.add("invisible");
-            }, 300);
-            document.body.style.overflow = "";
-        }
-
-        document.addEventListener('contextmenu', e => e.preventDefault());
-
-        document.addEventListener("click", function () {
-            const audio = document.getElementById("bg-music");
-            if (audio) {
-                audio.muted = false;
-                audio.volume = 0.3;
-                audio.play().catch(() => {});
-            }
-        }, { once: true });
-
-        document.getElementById("giveaway-modal").addEventListener("click", function(e) {
-            if (e.target.id === "giveaway-modal") {
-                closeGiveaway();
-            }
-        });
-
-        document.addEventListener("keydown", function(e) {
-            if (e.key === "Escape") {
-                closeGiveaway();
-                closeAgeGate();
-            }
-        });
-
-        window.addEventListener('load', function() {
-            setTimeout(() => {
-                checkAge('#');
-                setTimeout(closeAgeGate, 100);
-            }, 500);
-        });
-    </script>
+</script>
 </body>
 </html>
